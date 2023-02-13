@@ -1,0 +1,19 @@
+GET http://localhost:3003/api/blogs
+
+###################
+
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN1cGVyIFVzZXIiLCJpZCI6IjYyZWRiY2MyMTljMmMxNzMxNmY1MTY0YSIsImlhdCI6MTY2MDQzNTgzMiwiZXhwIjoxNjYwNDM5NDMyfQ.dmbsiiEaVp4s0hRhFA8y6mgfV2B_X7jZj7E7Gw1e2lo
+
+{
+  "title": "Delete this",
+  "author": "woof",
+  "url": "idk",
+  "likes": 0
+} 
+
+####################
+
+DELETE http://localhost:3003/api/blogs/inserturlhere
+

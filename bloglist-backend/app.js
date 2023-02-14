@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'test'){
   app.use('/api/testing', testRouter)
 }
 
-app.get('/', (req, res) => {
+app.get('/api/hi', (req, res) => {
   res.send('Hello!')
 })
 

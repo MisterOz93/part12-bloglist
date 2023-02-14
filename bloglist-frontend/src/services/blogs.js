@@ -38,4 +38,9 @@ const deleteBlog = async (id) => {
   return response.data
 }
 
-export default { getAll, getOne, setToken, create, update, deleteBlog }
+const testDocker = async () => {
+  const response = await axios.get('/api/hi')
+  return response.data
+}
+
+export default { getAll, getOne, setToken, create, update, deleteBlog, testDocker }

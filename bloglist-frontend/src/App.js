@@ -15,6 +15,7 @@ const App = () => {
   const [message, setMessage] = useState(null)
   const [error, setError] = useState(null)
   const [showBlogs, setShowBlogs] = useState(false)
+  const [greeting, setGreeting] = useState(null) //temp
 
   const removeMessage = () => {
     setTimeout(() => {
@@ -112,9 +113,17 @@ const App = () => {
     initialBlogs()
   }, [])
 
+  useEffect(() => {
+    const testing = async () => {
+      const testGreeting = await blogService.testDocker()
+      setGreeting(testGreeting)
+    }
+    testing()
+  }, [])
 
   return (
     <div>
+      {greeting && <h2>{greeting}</h2>}
       {!user && <LoginForm username={username} password={password} setUsername={setUsername}
         setPassword={setPassword} handleSubmit={handleSubmit} /> }
 

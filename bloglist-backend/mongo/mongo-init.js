@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+
 db.createUser({
   user: 'the_username',
   pwd: 'the_password',
@@ -14,9 +15,10 @@ db.createCollection('blogs')
 db.createCollection('users')
 
 db.users.insert({
-  username: 'Dr. Kerr',
+  username: 'foo',
   name: 'Dock Kerr',
-  passwordHash: 'password'
-}
-)
+  password: 'password'
+})
+
+
 

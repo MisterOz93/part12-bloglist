@@ -1,0 +1,47 @@
+ services:
+##START HERE: rename directories, build prod images, then run container and debug.
+    app:
+      image: frontend-prod
+      build:
+        context: .
+        dockerfile: ./bloglist-frontend/Dockerfile
+      volumes:
+        - ./bloglist-frontend/:/usr/src/app
+      ports:
+        - 3000:3000
+      container_name: bloglists-frontend-prod-proxy
+
+    mongo:
+      image: mongo:4.4.6
+      ports:
+        - 3456:27017
+      environment:
+        MONGO_INITDB_DATABASE: the_database
+      volumes: 
+        - ./bloglist-backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+    
+    server:
+      image: backend-prod
+      build:
+        context: .
+        dockerfile: ./bloglist-backend/Dockerfile
+      volumes:
+        - ./bloglist-backend/:/usr/src/app
+      ports:
+        - 3001:3001
+      environment:
+        - MONGO_URI=mongodb://the_username:the_password@mongo:27017/the_database
+        - PORT=3001
+        - SECRET='value'
+      container_name: bloglists-backend-prod-proxy
+
+    nginx:
+      image: nginx:1.20.1
+      volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      ports:
+        - 8080:80
+      container_name: reverse-proxy
+      depends_on:
+       - app
+       - server

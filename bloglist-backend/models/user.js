@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     minLength: 3
   },
   name: String,
-  passwordHash:{
+  password:{
     type: String,
     required: true,
     minLength: 3
@@ -25,7 +25,7 @@ userSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v
-    delete returnedObject.passwordHash
+    delete returnedObject.password
   }
 })
 

@@ -16,6 +16,9 @@ mongoose.connect(config.MONGO_URI).then( () => {
 
 app.use(cors())
 app.use(express.json())
+if (process.env.NODE_ENV === 'production'){
+  app.use(express.static('../bloglist-frontend/build'))
+}
 app.use(middleware.isolateToken)
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
